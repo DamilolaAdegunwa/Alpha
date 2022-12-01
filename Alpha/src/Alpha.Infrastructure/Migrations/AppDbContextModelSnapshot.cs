@@ -58,7 +58,7 @@ namespace Alpha.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Projects", (string)null);
                 });
 
             modelBuilder.Entity("Alpha.Core.ProjectAggregate.ToDoItem", b =>
@@ -108,7 +108,7 @@ namespace Alpha.Infrastructure.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("ToDoItems");
+                    b.ToTable("ToDoItems", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

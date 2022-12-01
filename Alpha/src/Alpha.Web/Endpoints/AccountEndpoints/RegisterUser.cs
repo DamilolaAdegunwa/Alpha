@@ -6,6 +6,7 @@ using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Alpha.Core.Constants;
+using Serilog;
 
 namespace Alpha.Web.Endpoints.AccountEndpoints
 {
@@ -27,15 +28,24 @@ namespace Alpha.Web.Endpoints.AccountEndpoints
       )]
     public override async Task<ActionResult<RegisterUserResponse>> HandleAsync(RegisterUserRequest request, CancellationToken cancellationToken = default)
     {
-      if(request == null ) { return BadRequest("empty request"); }
-
-      var result = await _authService.RegisterUser(new RegisterViewModel { Password = request.Password, Username = request.Username });
-
-      if(!result.status)
+      try
       {
-        return BadRequest(result.message);
+        if (request == null) { return BadRequest("empty request"); }
+
+        var result = await _authService.RegisterUser(new RegisterViewModel { Password = request.Password, Username = request.Username });
+
+        if (!result.status)
+        {
+          return BadRequest(result.message);
+        }
+        return Ok(new RegisterUserResponse { Message = result.message, User = result.response });
       }
-      return Ok(new RegisterUserResponse { });
+      catch (Exception ex)
+      {
+        var errorMessage = $"Error message: {ex.Message}, Error StackTrace: {ex.StackTrace}, Error InnerException: {ex.InnerException?.Message} {ex.InnerException?.StackTrace}";
+        Log.Error(errorMessage);
+        return BadRequest(ex.Message);
+      }
     }
   }
 }

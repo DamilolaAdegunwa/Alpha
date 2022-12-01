@@ -88,14 +88,24 @@ public class AuthService : IAuthService
     catch (Exception ex)
     {
       var errorMessage = $"Error message: {ex.Message}, Error StackTrace: {ex.StackTrace}, Error InnerException: {ex.InnerException?.Message} {ex.InnerException?.StackTrace}";
+      Log.Error(errorMessage);
       return (false, errorMessage);
     }
   }
 
-  public async Task<(bool status, string message)> RegisterUser(RegisterViewModel model)
+  public async Task<(bool status, string message, UserViewModel response)> RegisterUser(RegisterViewModel model)
   {
+    // try catch (logs, retry, page-name and method-name, initialize variables)
+    Log.Information($"---now in the '{nameof(RegisterUser)}' method---");
+    var methodName = nameof(RegisterUser);
     try
     {
+      if (model == null) return (false, "null value", null);
+
+      var chkUser = _appDbContext.IdentityUser.FirstOrDefault(u => u.UserName.Equals(model.Username,StringComparison.OrdinalIgnoreCase));
+
+      if (chkUser != null) { return (false, "user already exist!", null); }
+
       string hash = Stringhelper.SHA512(model.Password);
       var user = new IdentityUser
       {
@@ -104,11 +114,25 @@ public class AuthService : IAuthService
       };
       _appDbContext.Add<IdentityUser>(user);
       _appDbContext.SaveChanges();
-      return (true, "successful");
+
+      var appUser = _appDbContext.IdentityUser.FirstOrDefault(u => u.UserName == model.Username && u.PasswordHash == Stringhelper.SHA512(model.Password));
+
+      if (appUser == null) { return (false, "does not exist", null); }
+
+      var uservm = new UserViewModel
+      {
+        Email = appUser.Email,
+        Id = appUser.Id,
+        PhoneNumber = appUser.PhoneNumber,
+        UserName = appUser.UserName,
+      };
+      return (true, "successful", uservm);
     }
     catch (Exception ex)
     {
-      return (false, ex.Message); 
+      var errorMessage = $"Error message: {ex.Message}, Error StackTrace: {ex.StackTrace}, Error InnerException: {ex.InnerException?.Message} {ex.InnerException?.StackTrace}";
+      Log.Error(errorMessage);
+      return (false, ex.Message, null);
     }
   }
 }

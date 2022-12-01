@@ -14,8 +14,10 @@ namespace Alpha.Web.Endpoints.AccountEndpoints
   .WithResponse<LogoutUserResponse>
 
   {
-    public LogoutUser()
+    private readonly IAuthService _authService;
+    public LogoutUser(IAuthService authService)
     {
+      _authService = authService;
     }
     [HttpPost("/LogoutUser")]
     [SwaggerOperation(
@@ -28,13 +30,15 @@ namespace Alpha.Web.Endpoints.AccountEndpoints
     {
       try
       {
-        LogoutUserResponse response = new LogoutUserResponse
-        {
-
-        };
+        LogoutUserResponse response = new LogoutUserResponse { };
 
         //code goes here
-
+        var result = await _authService.LogoutUser(new RegisterViewModel { });
+        if(!result.status)
+        {
+          return BadRequest(result.message);
+        }
+        response.Message = result.message;
         return Ok(response);
       }
       catch (Exception ex)

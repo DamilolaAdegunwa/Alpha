@@ -1,6 +1,15 @@
-﻿using System.Security.Claims;
+﻿using System.Runtime.InteropServices;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Security.Policy;
+using System.Text;
+using Alpha.Infrastructure.Data;
+using Alpha.Infrastructure.Interfaces;
+using Alpha.Infrastructure.Models;
+using Alpha.Web.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Alpha.Web.Controllers
@@ -13,11 +22,22 @@ namespace Alpha.Web.Controllers
   /// </summary>
   public class HomeController : Controller
   {
+    private readonly UserManager<IdentityUser> _UserManager;
+    private readonly SignInManager<IdentityUser> _SignInManager;
+    private readonly AppDbContext _appDbContext;
+    private readonly IAuthService _authService;
+    public HomeController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, AppDbContext appDbContext, IAuthService authService)
+    {
+      _UserManager = userManager;
+      _SignInManager = signInManager;
+      _appDbContext = appDbContext;
+      _authService = authService;
+    }
+
     public IActionResult Index()
     {
       return View();
     }
-
     public IActionResult Error()
     {
       return View();
@@ -60,6 +80,53 @@ namespace Alpha.Web.Controllers
 
       user = HttpContext.User.Identity.Name;
 
+      return RedirectToAction("Index");
+    }
+    public IActionResult Login()
+    {
+      return View();
+    }
+    public async Task<IActionResult> Login(string username, string password)
+    {
+      var user = await _UserManager.FindByNameAsync(username);
+      if(user != null)
+      {
+        var result = await _SignInManager.PasswordSignInAsync(user, password, false, false);
+        if(result.Succeeded)
+        {
+
+        }
+      }
+      return View();
+    }
+    public IActionResult Register()
+    {
+      return View();
+    }
+    public async Task<IActionResult> Register(string username, string password)
+    {
+      var user = new IdentityUser
+      {
+        UserName = username,
+        Email = "",
+      };
+      var result = await _UserManager.CreateAsync(user, password);
+      if(result.Succeeded)
+      {
+        //sign user here
+      }
+      return View();
+    }
+    [HttpGet]
+    public async Task<IActionResult> CustomRegister()
+    {
+      return View();
+    }
+    [HttpPost]
+    //public async Task<IActionResult> CustomRegister(string username, string password)
+    public IActionResult CustomRegister(RegisterViewModel model)
+    {
+      _authService.RegisterUser(model);
       return RedirectToAction("Index");
     }
   }

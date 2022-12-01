@@ -2,12 +2,16 @@
 using Alpha.Core;
 using Alpha.Infrastructure;
 using Alpha.Infrastructure.Data;
+using Alpha.Infrastructure.Interfaces;
+using Alpha.Infrastructure.Services;
 using Alpha.Web;
 using Ardalis.ListStartupServices;
 using Autofac;
 using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using NuGet.Protocol;
 
@@ -18,7 +22,8 @@ var builder = WebApplication.CreateBuilder(args);
 //  config.Cookie.Name = "Grandmas.Cookies";
 //  config.LoginPath = "/Home/Authenticate";
 // });
-
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     //.AddCookie();
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, config =>
@@ -35,9 +40,14 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
 
-string connectionString = builder.Configuration.GetConnectionString("SqliteConnection");  //Configuration.GetConnectionString("DefaultConnection");
+//string connectionString = builder.Configuration.GetConnectionString("SqliteConnection");  //Configuration.GetConnectionString("DefaultConnection");
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");  //Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext(connectionString);
+//builder.Services.AddDbContext(connectionString);
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddIdentity<IdentityUser , IdentityRole>()
+  .AddEntityFrameworkStores<AppDbContext>()
+  .AddDefaultTokenProviders();
 
 builder.Services.AddControllersWithViews().AddNewtonsoftJson();
 builder.Services.AddRazorPages();

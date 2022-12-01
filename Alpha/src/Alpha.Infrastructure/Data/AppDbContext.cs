@@ -2,12 +2,14 @@
 using Alpha.SharedKernel;
 using Ardalis.EFCore.Extensions;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Alpha.Infrastructure.Data
 {
-    public class AppDbContext : DbContext
-    {
+    public class AppDbContext : IdentityDbContext//Identitydbcontext//DbContext
+  {
         private readonly IMediator? _mediator;
 
         //public AppDbContext(DbContextOptions options) : base(options)
@@ -63,5 +65,7 @@ namespace Alpha.Infrastructure.Data
         {
             return SaveChangesAsync().GetAwaiter().GetResult();
         }
+
+        public DbSet<IdentityUser> IdentityUser { get; set; }
     }
 }

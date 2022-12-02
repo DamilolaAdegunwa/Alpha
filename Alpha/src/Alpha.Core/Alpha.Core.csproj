@@ -13,16 +13,11 @@
     <PackageReference Include="Ardalis.Specification" Version="5.2.0" />
     <PackageReference Include="Autofac" Version="6.3.0" />
     <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Alpha.SharedKernel\Alpha.SharedKernel.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="GroupAggregate\Handlers\" />
-    <Folder Include="GroupAggregate\Events\" />
-    <Folder Include="GroupAggregate\Specifications\" />
   </ItemGroup>
 
 </Project>

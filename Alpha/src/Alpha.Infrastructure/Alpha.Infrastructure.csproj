@@ -28,4 +28,12 @@
     <ProjectReference Include="..\Alpha.Core\Alpha.Core.csproj" />
     <ProjectReference Include="..\Alpha.SharedKernel\Alpha.SharedKernel.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="GroupAggregate\Handlers\" />
+    <Folder Include="GroupAggregate\Specifications\" />
+    <Folder Include="UserAggregate\Evemts\" />
+    <Folder Include="UserAggregate\Handlers\" />
+    <Folder Include="UserAggregate\Specifications\" />
+  </ItemGroup>
 </Project>

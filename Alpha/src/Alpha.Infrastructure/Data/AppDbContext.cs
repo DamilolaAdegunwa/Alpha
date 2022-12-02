@@ -1,4 +1,5 @@
 ﻿using Alpha.Core.ProjectAggregate;
+using Alpha.Infrastructure.UserAggregate;
 using Alpha.SharedKernel;
 using Ardalis.EFCore.Extensions;
 using MediatR;
@@ -66,6 +67,6 @@ namespace Alpha.Infrastructure.Data
             return SaveChangesAsync().GetAwaiter().GetResult();
         }
 
-        public DbSet<IdentityUser> IdentityUser { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }

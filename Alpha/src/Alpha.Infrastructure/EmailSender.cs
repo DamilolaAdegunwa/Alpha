@@ -10,6 +10,7 @@ namespace Alpha.Infrastructure
 
         public EmailSender(ILogger<EmailSender> logger)
         {
+
             _logger = logger;
         }
 

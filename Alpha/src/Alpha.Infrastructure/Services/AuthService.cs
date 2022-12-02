@@ -42,7 +42,7 @@ public class AuthService : IAuthService
 
       if (string.IsNullOrWhiteSpace(model.Password) || string.IsNullOrWhiteSpace(model.Username)) { return (false, "pls include valid data!",null); }
 
-      var appUser = _appDbContext.IdentityUser.FirstOrDefault(u => u.UserName == model.Username && u.PasswordHash == Stringhelper.SHA512(model.Password));
+      var appUser = _appDbContext.ApplicationUser.FirstOrDefault(u => u.UserName == model.Username && u.PasswordHash == Stringhelper.SHA512(model.Password));
 
       if (appUser == null) { return (false, "does not exist", null); }
 
@@ -102,7 +102,7 @@ public class AuthService : IAuthService
     {
       if (model == null) return (false, "null value", null);
 
-      var chkUser = _appDbContext.IdentityUser.FirstOrDefault(u => u.UserName.Equals(model.Username,StringComparison.OrdinalIgnoreCase));
+      var chkUser = _appDbContext.ApplicationUser.FirstOrDefault(u => u.UserName.Equals(model.Username,StringComparison.OrdinalIgnoreCase));
 
       if (chkUser != null) { return (false, "user already exist!", null); }
 
@@ -115,7 +115,7 @@ public class AuthService : IAuthService
       _appDbContext.Add<IdentityUser>(user);
       _appDbContext.SaveChanges();
 
-      var appUser = _appDbContext.IdentityUser.FirstOrDefault(u => u.UserName == model.Username && u.PasswordHash == Stringhelper.SHA512(model.Password));
+      var appUser = _appDbContext.ApplicationUser.FirstOrDefault(u => u.UserName == model.Username && u.PasswordHash == Stringhelper.SHA512(model.Password));
 
       if (appUser == null) { return (false, "does not exist", null); }
 

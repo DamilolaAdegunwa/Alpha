@@ -13,7 +13,6 @@ public class NewUserAddedEvent : BaseDomainEvent
   public ApplicationUser User { get; set; }
   public NewUserAddedEvent(Group group, ApplicationUser user)
   {
-
     Group = group;
     User = user;
   }

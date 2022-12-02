@@ -1,8 +1,9 @@
 ﻿namespace Alpha.Core.ProjectAggregate
 {
-    public enum ProjectStatus
-    {
-        InProgress,
-        Complete
-    }
+   public enum ProjectStatus
+   {
+      Todo = 0,
+      InProgress = 1,
+      Complete = 2,
+   }
 }

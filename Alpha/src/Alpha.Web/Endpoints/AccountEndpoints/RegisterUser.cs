@@ -1,6 +1,6 @@
 ﻿using Alpha.Core.ProjectAggregate;
-using Alpha.Infrastructure.Interfaces;
-using Alpha.Infrastructure.Models;
+using Alpha.Core.Interfaces;
+using Alpha.Core.Models;
 using Alpha.SharedKernel.Interfaces;
 using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;

@@ -2,7 +2,7 @@
 using Alpha.Core;
 using Alpha.Infrastructure;
 using Alpha.Infrastructure.Data;
-using Alpha.Infrastructure.Interfaces;
+using Alpha.Core.Interfaces;
 using Alpha.Infrastructure.Services;
 using Alpha.Web;
 using Ardalis.ListStartupServices;

@@ -30,8 +30,10 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="GroupAggregate\Handlers\" />
     <Folder Include="GroupAggregate\Specifications\" />
+    <Folder Include="Helper\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Models\" />
     <Folder Include="UserAggregate\Evemts\" />
     <Folder Include="UserAggregate\Handlers\" />
     <Folder Include="UserAggregate\Specifications\" />

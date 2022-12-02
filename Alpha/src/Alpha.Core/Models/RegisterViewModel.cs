@@ -1,4 +1,4 @@
-﻿namespace Alpha.Infrastructure.Models;
+﻿namespace Alpha.Core.Models;
 
 public class RegisterViewModel
 {

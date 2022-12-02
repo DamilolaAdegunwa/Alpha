@@ -26,7 +26,7 @@ namespace Alpha.Infrastructure.Data
         public DbSet<ToDoItem> ToDoItems => Set<ToDoItem>();
         public DbSet<Project> Projects => Set<Project>();
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+      protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
@@ -67,6 +67,6 @@ namespace Alpha.Infrastructure.Data
             return SaveChangesAsync().GetAwaiter().GetResult();
         }
 
-        public DbSet<ApplicationUser> ApplicationUser { get; set; }
-    }
+        public DbSet<ApplicationUser> ApplicationUser => Set<ApplicationUser>();
+   }
 }

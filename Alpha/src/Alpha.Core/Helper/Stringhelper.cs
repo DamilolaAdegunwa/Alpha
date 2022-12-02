@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Alpha.Infrastructure.Helper;
+namespace Alpha.Core.Helper;
 public static class Stringhelper
 {
   public static string SHA512(string input)

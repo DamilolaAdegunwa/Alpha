@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-namespace Alpha.Infrastructure.Models;
+namespace Alpha.Core.Models;
 public class UserViewModel
 {
   /// <summary>

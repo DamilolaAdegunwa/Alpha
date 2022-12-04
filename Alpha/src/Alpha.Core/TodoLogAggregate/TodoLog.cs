@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Alpha.SharedKernel;
 using Alpha.SharedKernel.Interfaces;
 
-namespace Alpha.Core.ProjectAggregate;
+namespace Alpha.Core.TodoLogAggregate;
 public class TodoLog : BaseEntity, IAggregateRoot
 {
-  public string Action { get; set; }
-  public string Title { get; set; }
-  public string Message { get; set; }
+   public TodoLogAction Action { get; set; }
+   public string Title { get; set; }
+   public string Message { get; set; }
 }

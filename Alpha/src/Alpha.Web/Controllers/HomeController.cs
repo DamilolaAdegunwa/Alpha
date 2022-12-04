@@ -5,22 +5,22 @@ using System.Security.Policy;
 using System.Text;
 using Alpha.Infrastructure.Data;
 using Alpha.Core.Interfaces;
-using Alpha.Core.Models;
 using Alpha.Web.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Alpha.Core.Models.DTOs;
 
 namespace Alpha.Web.Controllers
 {
-  /// <summary>
-  /// A sample MVC controller that uses views.
-  /// Razor Pages provides a better way to manage view-based content, since the behavior, viewmodel, and view are all in one place,
-  /// rather than spread between 3 different folders in your Web project. Look in /Pages to see examples.
-  /// See: https://ardalis.com/aspnet-core-razor-pages-%E2%80%93-worth-checking-out/
-  /// </summary>
-  public class HomeController : Controller
+   /// <summary>
+   /// A sample MVC controller that uses views.
+   /// Razor Pages provides a better way to manage view-based content, since the behavior, viewmodel, and view are all in one place,
+   /// rather than spread between 3 different folders in your Web project. Look in /Pages to see examples.
+   /// See: https://ardalis.com/aspnet-core-razor-pages-%E2%80%93-worth-checking-out/
+   /// </summary>
+   public class HomeController : Controller
   {
     private readonly UserManager<IdentityUser> _UserManager;
     private readonly SignInManager<IdentityUser> _SignInManager;

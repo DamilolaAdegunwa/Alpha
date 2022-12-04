@@ -14,10 +14,32 @@
     <PackageReference Include="Autofac" Version="6.3.0" />
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Alpha.SharedKernel\Alpha.SharedKernel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TodoLogAggregate\Events\" />
+    <Folder Include="TodoLogAggregate\Handlers\" />
+    <Folder Include="TodoLogAggregate\Specifications\" />
+    <Folder Include="ConnectorAggregate\Events\" />
+    <Folder Include="ConnectorAggregate\Handlers\" />
+    <Folder Include="ConnectorAggregate\Specifications\" />
+    <Folder Include="NotificationAggregate\Events\" />
+    <Folder Include="NotificationAggregate\Handlers\" />
+    <Folder Include="NotificationAggregate\Specifications\" />
+    <Folder Include="CommentAggregate\Events\" />
+    <Folder Include="CommentAggregate\Handlers\" />
+    <Folder Include="CommentAggregate\Specifications\" />
+    <Folder Include="PartnerAggregate\Events\" />
+    <Folder Include="PartnerAggregate\Handlers\" />
+    <Folder Include="PartnerAggregate\Specifications\" />
+    <Folder Include="SessionAggregate\Events\" />
+    <Folder Include="SessionAggregate\Handlers\" />
+    <Folder Include="SessionAggregate\Specifications\" />
   </ItemGroup>
 
 </Project>

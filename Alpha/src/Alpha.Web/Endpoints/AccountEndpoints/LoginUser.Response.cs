@@ -1,4 +1,4 @@
-﻿using Alpha.Core.Models;
+﻿using Alpha.Core.Models.DTOs;
 using Microsoft.AspNetCore.Identity;
 
 namespace Alpha.Web.Endpoints.AccountEndpoints;

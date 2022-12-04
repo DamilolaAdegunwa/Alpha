@@ -1,4 +1,8 @@
-﻿using Alpha.Core.ProjectAggregate;
+﻿using Alpha.Core.CommentAggregate;
+using Alpha.Core.ConnectorAggregate;
+using Alpha.Core.NotificationAggregate;
+using Alpha.Core.ProjectAggregate;
+using Alpha.Core.SessionAggregate;
 using Alpha.Infrastructure.UserAggregate;
 using Alpha.SharedKernel;
 using Ardalis.EFCore.Extensions;
@@ -67,6 +71,10 @@ namespace Alpha.Infrastructure.Data
             return SaveChangesAsync().GetAwaiter().GetResult();
         }
 
-        public DbSet<ApplicationUser> ApplicationUser => Set<ApplicationUser>();
+        public DbSet<ApplicationUser> ApplicationUsers => Set<ApplicationUser>();
+      public DbSet<Session> Sessions=> Set<Session>();
+      public DbSet<Comment> Comments => Set<Comment>();
+      public DbSet<Connector> Connectors => Set<Connector>();
+      public DbSet<Notification> Notifications => Set<Notification>();
    }
 }

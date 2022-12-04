@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Alpha.Core.Constants;
 using Serilog;
+using Alpha.Core.Models.DTOs;
 
 namespace Alpha.Web.Endpoints.AccountEndpoints
 {

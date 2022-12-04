@@ -31,4 +31,8 @@
     <ProjectReference Include="..\Alpha.Infrastructure\Alpha.Infrastructure.csproj" />
   </ItemGroup>
   
+  <ItemGroup>
+    <Folder Include="Endpoints\AdminEndpoints\Payload\" />
+  </ItemGroup>
+  
 </Project>
